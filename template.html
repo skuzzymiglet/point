@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <title>point</title>
+        <script src="script.js"></script>
+        <link rel="stylesheet" href="style.css" media="all">
+</head>
+<body>
+    {{ range . }}
+    <div class="slide">
+        {{.}}
+    </div> 
+    {{ end }}
+</body>
+</html>

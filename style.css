@@ -1,0 +1,7 @@
+.slide{
+    display: none
+}
+.slide:first-of-type {
+    display: block
+}
+

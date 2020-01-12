@@ -1,0 +1,6 @@
+*.md
+!README.md
+out.html
+node_modules/
+package.json
+package-lock.json
