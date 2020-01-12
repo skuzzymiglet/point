@@ -1,6 +1,8 @@
 # `point`
 ## A simple tool for creating HTML presentations
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/1cede0dc4f659ebb2c3c/maintainability)](https://codeclimate.com/github/skuzzymiglet/point/maintainability)
+
 ## Installation
 
 `go get github.com/skuzzymiglet/point`
