@@ -4,10 +4,10 @@
         <meta charset="UTF-8">
         <title>point</title>
         <script src="script.js"></script>
-        <link rel="stylesheet" href="style.css" media="all">
+        <link rel="stylesheet" href="{{ .Style }}" media="all">
 </head>
 <body>
-    {{ range . }}
+    {{ range .Slides }}
     <div class="slide">
         {{.}}
     </div> 
