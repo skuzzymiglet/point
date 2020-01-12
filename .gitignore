@@ -1,6 +1,6 @@
 *.md
 !README.md
-out.html
+!example.md
 node_modules/
 package.json
 package-lock.json
