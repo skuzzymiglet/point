@@ -5,6 +5,14 @@
         <title>point</title>
         <script src="script.js"></script>
         <link rel="stylesheet" href="{{ .Style }}" media="all">
+        <style>
+            .slide{
+                display: none
+            }
+            .slide:first-of-type {
+                display: block
+            }
+        </style>
 </head>
 <body>
     {{ range .Slides }}
