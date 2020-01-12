@@ -15,6 +15,8 @@ Two blank lines in your `md` file indicate a new slide
 
 Prints a HTML file to stdout by default.
 
-It can then be opened in a browser.
+It can then be opened in a browser. Use <kbd>Right</kbd> and <kbd>Left</kbd> to move through the slides
 
+## TODO
 
+- [ ] Integrated mode: embeds CSS, JS and images (as `base64`) in the file to make it truly portable
