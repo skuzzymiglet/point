@@ -31,6 +31,11 @@ func main() {
 		log.Fatal(err)
 	}
 
+	styleBytes, err := ioutil.ReadFile(*style)
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	script, err := ioutil.ReadFile("script.js")
 	if err != nil {
 		log.Fatal(err)
@@ -53,5 +58,5 @@ func main() {
 
 	var tl *template.Template
 	tl = template.Must(template.ParseFiles("template.html"))
-	err = tl.ExecuteTemplate(os.Stdout, "template.html", Data{htmlParts, *style, string(script)})
+	err = tl.ExecuteTemplate(os.Stdout, "template.html", Data{htmlParts, string(styleBytes), string(script)})
 }
