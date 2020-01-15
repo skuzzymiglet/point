@@ -11,7 +11,7 @@
 
 Two blank lines in your `md` file indicate a new slide
 
-`point -i IN [-s STYLE]`
+`point -i IN [-s STYLE] [-o OUT]`
 
 (IN being a markdown file)
 
