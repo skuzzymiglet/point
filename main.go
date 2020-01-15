@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/akamensky/argparse"
 	"gitlab.com/golang-commonmark/markdown"
+	"io"
 	"io/ioutil"
 	"log"
 	"os"
@@ -21,6 +22,7 @@ func main() {
 	parser := argparse.NewParser("point", "html presentation tool")
 	inFile := parser.String("i", "in", &argparse.Options{Required: true, Help: "Input file"})
 	style := parser.String("s", "style", &argparse.Options{Required: false, Default: "style.css", Help: "Stylesheet"})
+	outFile := parser.String("o", "out", &argparse.Options{Required: false, Help: "Output file"})
 	err := parser.Parse(os.Args)
 	if err != nil {
 		log.Fatal(err)
@@ -58,5 +60,14 @@ func main() {
 
 	var tl *template.Template
 	tl = template.Must(template.ParseFiles("template.html"))
-	err = tl.ExecuteTemplate(os.Stdout, "template.html", Data{htmlParts, string(styleBytes), string(script)})
+	var out io.Writer
+	if *outFile == "" {
+		out = os.Stdout
+	} else {
+		out, err = os.Create(*outFile)
+		if err != nil {
+			log.Fatal(err)
+		}
+	}
+	err = tl.ExecuteTemplate(out, "template.html", Data{htmlParts, string(styleBytes), string(script)})
 }
