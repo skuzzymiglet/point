@@ -15,6 +15,7 @@ func main() {
 	type Data struct {
 		Slides []string
 		Style  string
+		Script string
 	}
 
 	parser := argparse.NewParser("point", "html presentation tool")
@@ -26,6 +27,11 @@ func main() {
 	}
 
 	inBytes, err := ioutil.ReadFile(*inFile)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	script, err := ioutil.ReadFile("script.js")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -47,5 +53,5 @@ func main() {
 
 	var tl *template.Template
 	tl = template.Must(template.ParseFiles("template.html"))
-	err = tl.ExecuteTemplate(os.Stdout, "template.html", Data{htmlParts, *style})
+	err = tl.ExecuteTemplate(os.Stdout, "template.html", Data{htmlParts, *style, string(script)})
 }
