@@ -22,7 +22,7 @@ func main() {
 	parser := argparse.NewParser("point", "html presentation tool")
 	inFile := parser.String("i", "in", &argparse.Options{Required: true, Help: "Input file"})
 	style := parser.String("s", "style", &argparse.Options{Required: false, Default: "style.css", Help: "Stylesheet"})
-	outFile := parser.String("o", "out", &argparse.Options{Required: false, Help: "Output file"})
+	outFile := parser.String("o", "out", &argparse.Options{Required: false, Help: "Output file. Default: stdout"})
 	err := parser.Parse(os.Args)
 	if err != nil {
 		log.Fatal(err)
