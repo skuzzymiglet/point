@@ -21,4 +21,7 @@ It can then be opened in a browser. Use <kbd>Right</kbd> and <kbd>Left</kbd> to 
 
 ## TODO
 
-- [ ] Integrated mode: embeds CSS, JS and images (as `base64`) in the file to make it truly portable
+- [X] Embed CSS
+- [X] Embed JS
+- [ ] Embed images as `base64`
+- [ ] Minify
