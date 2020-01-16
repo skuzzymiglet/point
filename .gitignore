@@ -1,8 +1,0 @@
-*.md
-!README.md
-!example.md
-out.html
-node_modules/
-package.json
-package-lock.json
-.eslintrc.yml
