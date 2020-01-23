@@ -2,6 +2,7 @@
 ## A simple tool for creating HTML presentations
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/1cede0dc4f659ebb2c3c/maintainability)](https://codeclimate.com/github/skuzzymiglet/point/maintainability)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b238e72b91fb42c2986eee097bc06947)](https://www.codacy.com/manual/skuzzymiglet/point?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=skuzzymiglet/point&amp;utm_campaign=Badge_Grade)
 
 ## Installation
 
@@ -21,4 +22,7 @@ It can then be opened in a browser. Use <kbd>Right</kbd> and <kbd>Left</kbd> to 
 
 ## TODO
 
-- [ ] Integrated mode: embeds CSS, JS and images (as `base64`) in the file to make it truly portable
+- [X] Embed CSS
+- [X] Embed JS
+- [ ] Embed images as `base64`
+- [ ] Minify
