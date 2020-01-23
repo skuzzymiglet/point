@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <title>point</title>
+            <script>var len;
+var slides;
+var index = 0;
+document.addEventListener('keydown', function(e){
+  slides = document.getElementsByClassName('slide');
+  len = slides.length;
+  if (e.keyCode === 37) {
+    index--
+  } else if (e.keyCode === 39) {
+    index++
+  }
+  index %= len;
+  if (index < 0) {index = 0}
+  Array.from(slides).forEach(function (e, i) {
+    if (i == index){
+      e.style.display = 'block'
+    } else {
+      e.style.display = 'none'
+    }
+  })
+})
+
+</script>
+        <style>
+h1, h2, h3, h4, h5, h6{
+    font-family: sans-serif
+}
+h1, h2{
+    text-align: center;
+}
+
+.slide{
+    margin: 25%;
+    width: 50%
+}
+
+            .slide{
+                display: none
+            }
+            .slide:first-of-type {
+                display: block
+            }
+        </style>
+</head>
+<body>
+    
+    <div class="slide">
+        <h1>θo</h1>
+<h2>A conlang I created</h2>
+
+    </div> 
+    
+    <div class="slide">
+        <h1>Who speaks it?</h1>
+<ul>
+<li>The θo Ras nomads of the Ha ðofi</li>
+<li>~50,000 people</li>
+</ul>
+
+    </div> 
+    
+    <div class="slide">
+        <h1>Why is it cool?</h1>
+<p>cos it is</p>
+
+    </div> 
+    
+</body>
+</html>

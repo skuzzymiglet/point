@@ -1,15 +1,56 @@
 package main
 
 import (
+	"bytes"
+	"encoding/base64"
+	"fmt"
+	"github.com/PuerkitoBio/goquery"
 	"github.com/akamensky/argparse"
 	"gitlab.com/golang-commonmark/markdown"
+	"golang.org/x/net/html"
 	"io"
 	"io/ioutil"
 	"log"
+	"mime"
 	"os"
 	"strings"
 	"text/template"
 )
+
+func EncodeBase64(src string) string {
+	f, err := ioutil.ReadFile(src)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	var out strings.Builder
+	encoder := base64.NewEncoder(base64.StdEncoding, &out)
+	encoder.Write(f)
+	encoder.Close()
+
+	extParts := strings.Split(src, ".")
+	ext := "." + extParts[1]
+
+	return fmt.Sprintf("data:%v;base64,%s", mime.TypeByExtension(ext), out.String())
+}
+
+func Base64Images(document string) string {
+	doc, err := goquery.NewDocumentFromReader(strings.NewReader(document))
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	doc.Find("img").Each(func(i int, s *goquery.Selection) {
+		s.Each(func(i int, sel *goquery.Selection) {
+			src, _ := sel.Attr("src")
+			src = EncodeBase64(src)
+			sel.SetAttr("src", src)
+		})
+	})
+	var b bytes.Buffer
+	html.Render(&b, doc.Selection.Nodes[0])
+	return b.String()
+}
 
 func main() {
 
@@ -56,7 +97,9 @@ func main() {
 		htmlParts = append(htmlParts, md.RenderToString([]byte(e)))
 	}
 
-	//fmt.Printf("%#v\n", htmlParts)
+	for i, e := range htmlParts {
+		htmlParts[i] = Base64Images(e)
+	}
 
 	var tl *template.Template
 	tl = template.Must(template.ParseFiles("template.html"))
