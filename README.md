@@ -24,5 +24,5 @@ It can then be opened in a browser. Use <kbd>Right</kbd> and <kbd>Left</kbd> to 
 
 - [X] Embed CSS
 - [X] Embed JS
-- [ ] Embed images as `base64`
+- [X] Embed images as `base64`
 - [ ] Minify
