@@ -18,11 +18,12 @@ Two blank lines in your `md` file indicate a new slide
 
 Prints a HTML file to stdout by default.
 
-It can then be opened in a browser. Use <kbd>Right</kbd> and <kbd>Left</kbd> to move through the slides
+It can then be opened in a browser, anywhere - there are no file dependencies since everything is embedded. Use <kbd>Right</kbd> and <kbd>Left</kbd> to move through the slides
 
 ## TODO
 
 - [X] Embed CSS
 - [X] Embed JS
 - [X] Embed images as `base64`
+- [ ] Embed web images
 - [ ] Minify
