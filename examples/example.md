@@ -18,3 +18,7 @@
 
 
 # Last slide
+
+Embedded image:
+
+![Embedded](gopher.jpg)

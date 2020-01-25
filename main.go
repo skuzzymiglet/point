@@ -7,6 +7,7 @@ import (
 	"github.com/PuerkitoBio/goquery"
 	"github.com/akamensky/argparse"
 	"gitlab.com/golang-commonmark/markdown"
+	"go/build"
 	"golang.org/x/net/html"
 	"io"
 	"io/ioutil"
@@ -60,14 +61,18 @@ func main() {
 		Script string
 	}
 
+	base := build.Default.GOPATH + "/src/github.com/skuzzymiglet/point/"
+
 	parser := argparse.NewParser("point", "html presentation tool")
 	inFile := parser.String("i", "in", &argparse.Options{Required: true, Help: "Input file"})
-	style := parser.String("s", "style", &argparse.Options{Required: false, Default: "style.css", Help: "Stylesheet"})
+	style := parser.String("s", "style", &argparse.Options{Required: false, Default: base + "style.css", Help: "Stylesheet"})
 	outFile := parser.String("o", "out", &argparse.Options{Required: false, Help: "Output file. Default: stdout"})
 	err := parser.Parse(os.Args)
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	//fmt.Println(base, *style)
 
 	inBytes, err := ioutil.ReadFile(*inFile)
 	if err != nil {
@@ -79,10 +84,12 @@ func main() {
 		log.Fatal(err)
 	}
 
-	script, err := ioutil.ReadFile("script.js")
+	script, err := ioutil.ReadFile(base + "script.js")
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	//fmt.Println(string(styleBytes))
 
 	in := string(inBytes)
 
@@ -102,7 +109,7 @@ func main() {
 	}
 
 	var tl *template.Template
-	tl = template.Must(template.ParseFiles("template.html"))
+	tl = template.Must(template.ParseFiles(base + "template.html"))
 	var out io.Writer
 	if *outFile == "" {
 		out = os.Stdout
@@ -112,5 +119,8 @@ func main() {
 			log.Fatal(err)
 		}
 	}
-	err = tl.ExecuteTemplate(out, "template.html", Data{htmlParts, string(styleBytes), string(script)})
+	err = tl.Execute(out, Data{htmlParts, string(styleBytes), string(script)})
+	if err != nil {
+		log.Fatal(err)
+	}
 }
