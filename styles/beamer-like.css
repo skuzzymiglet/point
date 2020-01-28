@@ -1,0 +1,42 @@
+h1, h2, h3, h4, h5, h6{
+    font-family: sans-serif;
+    font-weight: 400;
+}
+h1, h2{
+    text-align: center;
+}
+h1{
+    color: #3230a4;
+}
+img {
+    width: 100%
+}
+ul{
+    margin: 0.75em 0;
+    padding: 0 1em;
+    list-style: none;
+}
+ul li:before { 
+    content: "\2BC8";
+    color: #3230a4;
+}
+ol {
+    list-style: none;
+    counter-reset: li;
+}
+ol li::before
+{
+    color: #3230a4;
+    content: counter(li);
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em
+
+}
+ol li{
+    counter-increment: li;
+}
+.slide{
+    margin: 25%;
+    width: 50%
+}
