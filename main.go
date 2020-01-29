@@ -53,6 +53,21 @@ func Base64Images(document string) string {
 	return b.String()
 }
 
+func ParseStyle(s string) string {
+	f, err := os.Open(s)
+	if err != nil {
+		path := build.Default.GOPATH + "/src/github.com/skuzzymiglet/point/style/" + s + ".css"
+		sf, err := os.Open(path)
+		if err != nil {
+			log.Fatal(err)
+		} else {
+			return path
+		}
+	} else {
+		return s
+	}
+}
+
 func main() {
 
 	type Data struct {
@@ -123,4 +138,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	fmt.Println(ParseStyle("style.css"))
+	fmt.Println(ParseStyle("beamer-like"))
 }
