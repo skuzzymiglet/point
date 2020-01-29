@@ -54,10 +54,10 @@ func Base64Images(document string) string {
 }
 
 func ParseStyle(s string) string {
-	f, err := os.Open(s)
+	_, err := os.Open(s)
 	if err != nil {
 		path := build.Default.GOPATH + "/src/github.com/skuzzymiglet/point/style/" + s + ".css"
-		sf, err := os.Open(path)
+		_, err := os.Open(path)
 		if err != nil {
 			log.Fatal(err)
 		} else {
