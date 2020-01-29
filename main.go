@@ -53,10 +53,10 @@ func Base64Images(document string) string {
 	return b.String()
 }
 
-func ParseStyle(s string) string {
+func ParseStyle(s, base string) string {
 	_, err := os.Open(s)
 	if err != nil {
-		path := build.Default.GOPATH + "/src/github.com/skuzzymiglet/point/style/" + s + ".css"
+		path := base + "styles/" + s + ".css"
 		_, err := os.Open(path)
 		if err != nil {
 			log.Fatal(err)
@@ -95,7 +95,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	styleBytes, err := ioutil.ReadFile(*style)
+	styleBytes, err := ioutil.ReadFile(ParseStyle(*style, base))
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -139,6 +139,4 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(ParseStyle("style.css"))
-	fmt.Println(ParseStyle("beamer-like"))
 }
