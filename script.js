@@ -1,6 +1,7 @@
 var len
 var slides
 var index = 0
+
 document.addEventListener('keydown', function (e) {
   slides = document.getElementsByClassName('slide')
   len = slides.length

@@ -8,7 +8,7 @@
 
 `go get github.com/skuzzymiglet/point`
 
-##  Usage
+## Usage
 
 Two blank lines in your `md` file indicate a new slide
 
@@ -22,8 +22,18 @@ It can then be opened in a browser, anywhere - there are no file dependencies si
 
 ## TODO
 
-- [X] Embed CSS
-- [X] Embed JS
-- [X] Embed images as `base64`
-- [ ] Embed web images
-- [ ] Minify
+  - [X] Embed CSS
+  - [X] Embed JS
+  - [X] Embed images as `base64`
+  - [ ] Center slide
+  - [ ] Show slide number
+  - [ ] More styles
+  - [ ] Embed web images
+  - [ ] Automatic moving through slides
+  - [ ] Add tests
+  - [ ] Benchmark against `pandoc`-generated beamer
+  - [ ] Hosted webapp
+
+## Issues
+
++ Slides are parsed, changed and rendered individually - each one has a full HTML tree
