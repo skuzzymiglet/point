@@ -66,6 +66,7 @@ func ParseStyle(s string) string {
 	} else {
 		return s
 	}
+	return ""
 }
 
 func main() {
