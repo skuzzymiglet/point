@@ -81,7 +81,7 @@ func main() {
 
 	parser := argparse.NewParser("point", "html presentation tool")
 	inFile := parser.String("i", "in", &argparse.Options{Required: true, Help: "Input file"})
-	style := parser.String("s", "style", &argparse.Options{Required: false, Default: base + "style.css", Help: "Stylesheet"})
+	style := parser.String("s", "style", &argparse.Options{Required: false, Default: "", Help: "Stylesheet"})
 	outFile := parser.String("o", "out", &argparse.Options{Required: false, Help: "Output file. Default: stdout"})
 	err := parser.Parse(os.Args)
 	if err != nil {
@@ -95,9 +95,18 @@ func main() {
 		log.Fatal(err)
 	}
 
-	styleBytes, err := ioutil.ReadFile(ParseStyle(*style, base))
-	if err != nil {
-		log.Fatal(err)
+	var styleBytes []byte
+	fmt.Println(*style == "")
+	if *style == "" {
+		styleBytes, err = ioutil.ReadFile(base + "style.css")
+		if err != nil {
+			log.Fatal(err)
+		}
+	} else {
+		styleBytes, err = ioutil.ReadFile(ParseStyle(*style, base))
+		if err != nil {
+			log.Fatal(err)
+		}
 	}
 
 	script, err := ioutil.ReadFile(base + "script.js")

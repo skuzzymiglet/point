@@ -1,24 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+    <head>
         <meta charset="UTF-8">
         <title>point</title>
-            <script>{{ .Script }}</script>
+        <script>{{ .Script }}</script>
         <style>
-{{ .Style }}
+            h1, h2, h3, h4, h5, h6{
+                font-family: sans-serif
+            }
+            h1, h2{
+                text-align: center;
+            }
+            img {
+                width: 100%
+            }
             .slide{
-                display: none
+                margin: 25%;
+                width: 50%;
+                display: none;
             }
             .slide:first-of-type {
                 display: block
             }
+            
+            {{ .Style }}
         </style>
-</head>
-<body>
-    {{ range .Slides }}
-    <div class="slide">
-        {{.}}
-    </div> 
-    {{ end }}
-</body>
+    </head>
+    <body>
+        {{ range .Slides }}
+        <div class="slide">
+            {{.}}
+        </div> 
+        {{ end }}
+    </body>
 </html>
