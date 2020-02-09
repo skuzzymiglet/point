@@ -96,7 +96,6 @@ func main() {
 	}
 
 	var styleBytes []byte
-	fmt.Println(*style == "")
 	if *style == "" {
 		styleBytes, err = ioutil.ReadFile(base + "style.css")
 		if err != nil {
