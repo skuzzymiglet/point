@@ -77,8 +77,10 @@ func main() {
 		Script string
 	}
 
+	// Where our files are
 	base := build.Default.GOPATH + "/src/github.com/skuzzymiglet/point/"
 
+	// Parse args
 	parser := argparse.NewParser("point", "html presentation tool")
 	inFile := parser.String("i", "in", &argparse.Options{Required: true, Help: "Input file"})
 	style := parser.String("s", "style", &argparse.Options{Required: false, Default: "", Help: "Stylesheet"})
@@ -88,9 +90,13 @@ func main() {
 		log.Fatal(err)
 	}
 
-	//fmt.Println(base, *style)
-
+	// Read files
 	inBytes, err := ioutil.ReadFile(*inFile)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	script, err := ioutil.ReadFile(base + "script.js")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -108,17 +114,9 @@ func main() {
 		}
 	}
 
-	script, err := ioutil.ReadFile(base + "script.js")
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	//fmt.Println(string(styleBytes))
-
 	in := string(inBytes)
 
 	inParts := strings.Split(in, "\n\n\n")
-	//fmt.Printf("%#v\n", inParts)
 
 	md := markdown.New(markdown.XHTMLOutput(true))
 
