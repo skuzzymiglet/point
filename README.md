@@ -10,7 +10,7 @@
 
 ## Usage
 
-Two blank lines in your `md` file indicate a new slide
+Every title (`#`/`<h1>`) starts a new slide
 
 `point -i IN [-s STYLE] [-o OUT]`
 
@@ -36,4 +36,4 @@ It can then be opened in a browser, anywhere - there are no file dependencies si
 
 ## Issues
 
-+ Slides are parsed, changed and rendered individually - each one has a full HTML tree
++ ~~Slides are parsed, changed and rendered individually - each one has a full HTML tree~~ **Fixed in [b06f97d](https://github.com/skuzzymiglet/point/commit/2b3f10831bbe38ea49f61e3daed4286bed71d191)**
