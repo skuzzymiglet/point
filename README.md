@@ -36,4 +36,4 @@ It can then be opened in a browser, anywhere - there are no file dependencies si
 
 ## Issues
 
-+ ~~Slides are parsed, changed and rendered individually - each one has a full HTML tree~~ **Fixed in [b06f97d](https://github.com/skuzzymiglet/point/commit/2b3f10831bbe38ea49f61e3daed4286bed71d191)**
++ ~~Slides are parsed, changed and rendered individually - each one has a full HTML tree~~ **Fixed in [2b3f10831b](https://github.com/skuzzymiglet/point/commit/2b3f10831bbe38ea49f61e3daed4286bed71d191)**
