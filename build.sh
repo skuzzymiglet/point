@@ -1,10 +1,16 @@
 #!/usr/bin/env bash
 
 package=$1
+version=$2
 if [[ -z "$package" ]]; then
-  echo "usage: $0 <package-name>"
+  echo "usage: $0 <package-name> <version>"
   exit 1
 fi
+if [[ -z "$version" ]]; then
+  echo "usage: $0 <package-name> <version>"
+  exit 1
+fi
+
 package_split=(${package//\// })
 package_name=${package_split[-1]}
 
@@ -15,7 +21,7 @@ do
     platform_split=(${platform//\// })
     GOOS=${platform_split[0]}
     GOARCH=${platform_split[1]}
-    output_name=$package_name'-'$GOOS'-'$GOARCH
+    output_name=$package_name'-'$version'-'$GOOS'-'$GOARCH
     if [ $GOOS = "windows" ]; then
         output_name+='.exe'
     fi  
