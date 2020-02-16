@@ -79,7 +79,7 @@ func SplitAfter(s string, re *regexp.Regexp) []string {
 	if is == nil {
 		return append(r, s)
 	}
-	for index, i := range is {
+	for index := range is {
 		if index == len(is)-1 {
 			r = append(r, s[p:])
 		} else {
@@ -89,6 +89,14 @@ func SplitAfter(s string, re *regexp.Regexp) []string {
 
 	}
 	return append(r, s[p:])
+}
+
+func Slides(m []byte) []string {
+	md := markdown.New(markdown.XHTMLOutput(true))
+	rendered := md.RenderToString(m)
+	rendered = Base64Images(rendered)
+	splitExpr := regexp.MustCompile("<h1>.+</h1>")
+	return SplitAfter(rendered, splitExpr)
 }
 
 func main() {
@@ -123,6 +131,7 @@ func main() {
 		log.Fatal(err)
 	}
 
+	// Read style
 	var styleBytes []byte
 	if *style == "" {
 		styleBytes, err = ioutil.ReadFile(base + "style.css")
@@ -136,15 +145,12 @@ func main() {
 		}
 	}
 
-	md := markdown.New(markdown.XHTMLOutput(true))
-	rendered := md.RenderToString(inBytes)
-	rendered = Base64Images(rendered)
-	splitExpr := regexp.MustCompile("<h1>.+</h1>")
-	parts := SplitAfter(rendered, splitExpr)
+	// Render markdown, embed images and split into slides
+	parts := Slides(inBytes)
 
-	var tl *template.Template
-	tl = template.Must(template.ParseFiles(base + "template.html"))
+	tl := template.Must(template.ParseFiles(base + "template.html"))
 
+	// Output
 	var out io.Writer
 	if *outFile == "" {
 		out = os.Stdout
@@ -154,6 +160,7 @@ func main() {
 			log.Fatal(err)
 		}
 	}
+	// Insert slides, style and script into template
 	err = tl.Execute(out, Data{parts, string(styleBytes), string(script)})
 	if err != nil {
 		log.Fatal(err)
