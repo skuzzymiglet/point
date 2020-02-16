@@ -14,6 +14,7 @@ import (
 	"log"
 	"mime"
 	"os"
+	"regexp"
 	"strings"
 	"text/template"
 )
@@ -69,6 +70,27 @@ func ParseStyle(s, base string) string {
 	return ""
 }
 
+func SplitAfter(s string, re *regexp.Regexp) []string {
+	var (
+		r []string
+		p int
+	)
+	is := re.FindAllStringIndex(s, -1)
+	if is == nil {
+		return append(r, s)
+	}
+	for index, i := range is {
+		if index == len(is)-1 {
+			r = append(r, s[p:])
+		} else {
+			r = append(r, s[p:is[index+1][0]])
+			p = is[index+1][0]
+		}
+
+	}
+	return append(r, s[p:])
+}
+
 func main() {
 
 	type Data struct {
@@ -114,24 +136,15 @@ func main() {
 		}
 	}
 
-	in := string(inBytes)
-
-	inParts := strings.Split(in, "\n\n\n")
-
 	md := markdown.New(markdown.XHTMLOutput(true))
-
-	htmlParts := make([]string, 0)
-
-	for _, e := range inParts {
-		htmlParts = append(htmlParts, md.RenderToString([]byte(e)))
-	}
-
-	for i, e := range htmlParts {
-		htmlParts[i] = Base64Images(e)
-	}
+	rendered := md.RenderToString(inBytes)
+	rendered = Base64Images(rendered)
+	splitExpr := regexp.MustCompile("<h1>.+</h1>")
+	parts := SplitAfter(rendered, splitExpr)
 
 	var tl *template.Template
 	tl = template.Must(template.ParseFiles(base + "template.html"))
+
 	var out io.Writer
 	if *outFile == "" {
 		out = os.Stdout
@@ -141,7 +154,7 @@ func main() {
 			log.Fatal(err)
 		}
 	}
-	err = tl.Execute(out, Data{htmlParts, string(styleBytes), string(script)})
+	err = tl.Execute(out, Data{parts, string(styleBytes), string(script)})
 	if err != nil {
 		log.Fatal(err)
 	}

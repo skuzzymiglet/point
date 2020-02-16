@@ -1,11 +1,9 @@
 # An example presentation
 ## By skuzzymiglet
 
-
 # Slide 1
 
 + Markdown things
-
 
 # Slide 2
 
@@ -15,7 +13,6 @@
 
 1. Another list
 2. More items
-
 
 # Last slide
 
