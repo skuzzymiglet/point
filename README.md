@@ -3,7 +3,7 @@
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/1cede0dc4f659ebb2c3c/maintainability)](https://codeclimate.com/github/skuzzymiglet/point/maintainability)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b238e72b91fb42c2986eee097bc06947)](https://www.codacy.com/manual/skuzzymiglet/point?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=skuzzymiglet/point&amp;utm_campaign=Badge_Grade)
-
+![Go](https://github.com/skuzzymiglet/point/workflows/Go/badge.svg)
 ## Installation
 
 `go get github.com/skuzzymiglet/point`
