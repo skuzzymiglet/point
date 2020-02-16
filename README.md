@@ -8,6 +8,12 @@
 
 `go get github.com/skuzzymiglet/point`
 
+## Why?
+
++ Lightweight and fast
++ No special software needed to display, just a browser
++ Easy CSS styling
+
 ## Usage
 
 Every title (`#`/`<h1>`) starts a new slide
