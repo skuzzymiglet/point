@@ -11,6 +11,6 @@ jobs:
     - uses: actions/checkout@v2
     - name: Install dependencies
       run: |
-        apt install hyperfine pandoc
+        sudo apt install hyperfine pandoc
     - name: Benchmark point against pandoc beamer
       run: ./benchmark.sh
