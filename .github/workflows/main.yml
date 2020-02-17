@@ -1,0 +1,13 @@
+name: Benchmark
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Benchmark point against pandoc beamer
+      run: ./benchmark.sh
