@@ -3,6 +3,6 @@ cd examples
 echo "dir: " $(pwd)
 pandoc -v
 echo "pandoc beamer:"
-hyperfine "pandoc -i example.md -o out.pdf"
+hyperfine --show-output "pandoc -i example.md -o out.pdf"
 echo "point:"
-hyperfine "../point -i example.md -o out.html"
+hyperfine --show-output "../point -i example.md -o out.html"
