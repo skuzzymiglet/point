@@ -2,9 +2,6 @@
 
 go build
 cd examples
-echo "dir: " $(pwd)
-pandoc -v
-go env GOPATH
 echo "pandoc beamer:"
 hyperfine --show-output "pandoc -i example.md -o out.pdf"
 echo "point:"
