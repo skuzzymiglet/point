@@ -29,7 +29,7 @@ jobs:
     - name: Install
       run: go install
     - name: Run point
-      run: point -h
+      run: ./point -h
     - name: Install benchmark dependencies
       run: |
         sudo apt update
