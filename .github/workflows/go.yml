@@ -26,3 +26,15 @@ jobs:
 
     - name: Build
       run: go build -v .
+    - name: Install
+      run: go install
+    - name: Run point
+      run: point -h
+    - name: Install benchmark dependencies
+      run: |
+        sudo apt update
+        wget https://github.com/sharkdp/hyperfine/releases/download/v1.9.0/hyperfine_1.9.0_amd64.deb
+        sudo dpkg -i hyperfine_1.9.0_amd64.deb
+        sudo apt install texlive-full pandoc --fix-missing
+    - name: Benchmark
+      run: ./benchmark.sh
